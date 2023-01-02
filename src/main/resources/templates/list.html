@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>To-Do List</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1 {
+            margin-top: 50px;
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            margin-top: 40px;
+            text-align: center;
+            color: #333;
+        }
+        #title123 {
+            font-weight: bold;
+        }
+        form {
+            margin: 0 auto;
+            width:200px;
+            text-align: center;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+        ul {
+            margin: 0 auto;
+            width: 800px;
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 10px 20px;
+        }
+        p {
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+<h1>To-Do List</h1>
+<ul>
+    <li th:each="item : ${items}">
+        <p th:text="${item.title}" id="title123">Title</p>
+        <p th:text="${item.description}">Description</p>
+        <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+    </li>
+</ul>
+
+<h2>Add</h2>
+<form method="post" action="/add">
+    <p>To-do <input type="text" name="title" /></p>
+    <p>Memo <input type="text" name="description" /></p>
+    <input type="submit" value="Add" />
+</form>
+</body>
+</html>
